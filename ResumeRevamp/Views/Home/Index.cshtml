@@ -4,14 +4,14 @@
 }
 
 <div>
-    <h3 class="display-4">Need a New, Impfactful Word for your Resume?</h3>
+    <h3 class="display-4">Find New, Impfactful Words for Your Resume</h3>
     <center>
         <form asp-controller="Home" asp-action="Index">
             <table>
                 <tr>
                     <td>Word: </td>
-                    <td><input type="text" id="OriginalWord" name="OriginalWord" /></td>
-                    <td><input type="submit" value="Submit" /></td>
+                    <td><input class="form-control" type="text" id="OriginalWord" name="OriginalWord" placeholder="Ex. Assist, Strong, Use" /></td>
+                    <td><input class="btn btn-info" type="submit" value="Submit" /></td>
                 </tr>
             </table>
             <hr />
@@ -22,14 +22,14 @@
         <table class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Synonyms:</th>
+                    <th style="color: white">Synonyms:</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var synonym in Model.Synonyms)
                 {
                     <tr>
-                        <td>
+                        <td class="white-text">
                             @Html.DisplayFor(modelItem => synonym)
                         </td>
                     </tr>
@@ -39,7 +39,13 @@
     }
     else
     {
-        <p>No synonyms Found.</p>
+        <p>No synonyms found. Try another variation (ex. use, used, utilized) or another word.</p>
     }
 </div>
+
+<style>
+    .white-text {
+        color: white;
+    }
+</style>
 
