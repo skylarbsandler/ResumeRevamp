@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ResumeRevamp.Interfaces;
 using ResumeRevamp.Models;
 using System.Diagnostics;
 
@@ -6,16 +7,26 @@ namespace ResumeRevamp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IWordsApiService _wordsApiService;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IWordsApiService wordsApiService, ILogger<HomeController> logger)
         {
             _logger = logger;
+            _wordsApiService = wordsApiService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(Word word)
         {
-            return View();
+            List<string> synonyms = new List<string>();
+
+            if (word.OriginalWord != null)
+            {
+                synonyms = await _wordsApiService.GetSynonymsAsync(word);
+            }
+
+            var wordWithSynonyms = new Word { OriginalWord = word.OriginalWord, Synonyms = synonyms };
+            return View(wordWithSynonyms);
         }
 
         public IActionResult Privacy()

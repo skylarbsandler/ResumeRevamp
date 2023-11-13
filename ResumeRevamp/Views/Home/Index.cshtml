@@ -1,8 +1,45 @@
-﻿@{
+﻿@model Word
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <h3 class="display-4">Need a New, Impfactful Word for your Resume?</h3>
+    <center>
+        <form asp-controller="Home" asp-action="Index">
+            <table>
+                <tr>
+                    <td>Word: </td>
+                    <td><input type="text" id="OriginalWord" name="OriginalWord" /></td>
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+            <hr />
+        </form>
+    </center>
+    @if (Model != null && Model.Synonyms != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Synonyms:</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var synonym in Model.Synonyms)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => synonym)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No synonyms Found.</p>
+    }
 </div>
+
