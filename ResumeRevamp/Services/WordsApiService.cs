@@ -39,9 +39,7 @@ namespace ResumeRevamp.Services
                     }
                     else
                     {
-                        // If the API request is not successful, handle the error here.
-                        // You might want to log the response status code or specific error.
-                        // For now, returning an empty list.
+                        //Add logging
                         return new List<string>();
                     }
                 }
