@@ -1,0 +1,50 @@
+﻿@model Word
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="font-family: 'Helvetica', sans-serif;">
+    <h3 class="display-4 text-center"><strong>Find New, Impactful Words for Your Resume</strong></h3>
+    <center>
+        <form asp-controller="Home" asp-action="Index">
+            <table class="text-center">
+                <tr>
+                    <td style="font-size: 1.5em; font-weight: bold; color: white">Word: </td>
+                    <td><input class="form-control" type="text" id="OriginalWord" name="OriginalWord" placeholder="Ex. Assist, Strong, Use" /></td>
+                    <td><input class="btn btn-info" type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+            <hr />
+        </form>
+    </center>
+    @if (Model != null && Model.Synonyms != null)
+    {
+        <table class="table table-bordered table-striped table-sm mx-auto" style="max-width: 70%;">
+            <thead>
+                <tr>
+                    <th style="font-size: 1.5em; font-weight: bold; color: white">Synonyms:</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var synonym in Model.Synonyms)
+                {
+                    <tr>
+                        <td style="font-size: 1.2em; color: white">
+                            @Html.DisplayFor(modelItem => synonym)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No synonyms found. Try another variation (ex. use, used, utilized) or another word.</p>
+    }
+</div>
+
+<style>
+    .white-text {
+        color: white;
+    }
+</style>

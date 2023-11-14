@@ -19,7 +19,22 @@ namespace ResumeRevamp.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(Word word)
+        public IActionResult Index()
+        {
+
+            if (Request.Cookies.ContainsKey("CurrentUser"))
+            {
+                return Redirect("/users/profile");
+            }
+
+            else
+            {
+                return View();
+            }
+
+        }
+
+        public async Task<IActionResult> Revamp(Word word)
         {
             List<string> synonyms = new List<string>();
 

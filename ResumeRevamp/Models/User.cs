@@ -27,19 +27,53 @@ namespace ResumeRevamp.Models
 
         public List<Word>? Favorites { get; set; } = new List<Word>();
 
-        public string ReturnEncryptedString(string stringToEncrypt)
+        public User()
         {
+
+        }
+
+        public User(string name, string username, string password)
+        {
+            Name = name;
+            Username = username;
+            Password = password;
+        }
+
+
+
+        public string GetDigestedPassword(string password)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("Password cannot be null or empty.");
+            }
+
             HashAlgorithm sha = SHA256.Create();
-            byte[] firstInputBytes = Encoding.ASCII.GetBytes(stringToEncrypt);
+
+            string PasswordInput = password;
+
+            byte[] firstInputBytes = Encoding.ASCII.GetBytes(PasswordInput);
+
             byte[] firstInputDigested = sha.ComputeHash(firstInputBytes);
 
             StringBuilder firstInputBuilder = new StringBuilder();
+
             foreach (byte b in firstInputDigested)
             {
                 Console.Write(b + ", ");
                 firstInputBuilder.Append(b.ToString("x2"));
             }
+
             return firstInputBuilder.ToString();
+
+        }
+
+        public bool VerifyPassword(string password)
+        {
+            string inputHash = GetDigestedPassword(password).ToString();
+
+            return inputHash == Password;
         }
     }
 }
+   
