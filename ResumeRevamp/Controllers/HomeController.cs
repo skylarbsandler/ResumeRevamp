@@ -34,6 +34,11 @@ namespace ResumeRevamp.Controllers
 
         }
 
+        public IActionResult RevampForm()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Revamp(Word word)
         {
             List<string> synonyms = new List<string>();
@@ -42,22 +47,11 @@ namespace ResumeRevamp.Controllers
             {
                 synonyms = await _wordsApiService.GetSynonymsAsync(word);
             }
-            //else
-            //{
-            //    return BadRequest(new { error = "OriginalWord cannot be null." });
-            //}
 
             var wordWithSynonyms = new Word { OriginalWord = word.OriginalWord, Synonyms = synonyms };
 
-            //if (wordWithSynonyms.OriginalWord != null)
-            //{
-            //    _context.Words.Add(wordWithSynonyms);
-            //    _context.SaveChanges();
-            //}
-            //else
-            //{
-            //    return BadRequest(new { error = "wordWithSynonyms cannot be null." });
-            //}
+            _context.Words.Add(wordWithSynonyms);
+            _context.SaveChanges();
 
             return View(wordWithSynonyms);
         }
