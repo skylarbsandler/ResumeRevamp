@@ -11,7 +11,7 @@
                 <tr>
                     <td style="font-size: 1.5em; font-weight: bold; color: white">Word: </td>
                     <td><input class="form-control" type="text" id="OriginalWord" name="OriginalWord" placeholder="Ex. Assist, Strong, Use" /></td>
-                    <td><input class="btn btn-info" type="submit" value="Submit" /></td>
+                    <td><input class="btn btn-success" type="submit" value="Submit" /></td>
                 </tr>
             </table>
             <hr />
@@ -19,10 +19,10 @@
     </center>
     @if (Model != null && Model.Synonyms != null)
     {
-        <table class="table table-bordered table-striped table-sm mx-auto" style="max-width: 70%;">
+        <table class="table table-bordered table-striped table-sm mx-auto" style="max-width: 50%;">
             <thead>
                 <tr>
-                    <th style="font-size: 1.5em; font-weight: bold; color: white">Synonyms:</th>
+                    <th style="font-size: 1.5em; font-weight: bold; color: white">Synonyms for <em>@Model.OriginalWord</em>:</th>
                 </tr>
             </thead>
             <tbody>
