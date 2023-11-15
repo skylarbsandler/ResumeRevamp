@@ -259,27 +259,24 @@ namespace ResumeRevamp.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
-            {
-                return NotFound();
-            }
-
-            if (!IsCurrentUser((int)userId))
-            {
-                return BadRequest();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return NotFound();
+            //}
 
             var existingUser = _context.Users.Find(userId);
 
-            if (existingUser != null)
-            {
-                ModelState.AddModelError("Username", "Username is already taken. Please choose a different one.");
-                return View("Edit", user);
-            }
+            //if (existingUser != null)
+            //{
+            //    ModelState.AddModelError("Username", "Username is already taken. Please choose a different one.");
+            //    return View("Edit", user);
+            //}
 
             existingUser.Name = user.Name;
 
             existingUser.Username = user.Username;
+
+            existingUser.Email = user.Email;
 
             _context.SaveChanges();
             Log.Information("A user's information has been updated.");
@@ -287,9 +284,6 @@ namespace ResumeRevamp.Controllers
             return RedirectToAction("profile", new { userId = user.Id, userUpdated = true });
 
         }
-
-
-
 
 
 
@@ -351,8 +345,32 @@ namespace ResumeRevamp.Controllers
             }
         }
 
+        [Route("/Users/favorites")]
+        public IActionResult Favorites()
+        {
+            if (!Request.Cookies.ContainsKey("CurrentUser"))
+            {
+                return Redirect("/");
+            }
 
+            string id = Request.Cookies["CurrentUser"].ToString();
 
+            if (int.TryParse(id, out int parsedId))
+            {
+                var user1 = _context.Users
+              .Where(u => u.Id == parsedId)
+              .FirstOrDefault();
+
+                return View(user1);
+            }
+            else
+            {
+                Response.Cookies.Delete("CurrentUser");
+                return NotFound();
+            }
+
+            return View();
+        }
 
 
 

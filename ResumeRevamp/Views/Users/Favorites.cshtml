@@ -1,0 +1,23 @@
+﻿@model ResumeRevamp.Models.User
+
+<h1>@Model.Name's Favorites</h1>
+
+@if (Model.Favorites.Any() != false)
+{
+
+    foreach (var word in Model.Favorites)
+    {
+
+        <div>
+
+            <h6>@word.OriginalWord</h6>
+            <h6>@word.Synonyms</h6>
+
+        </div>
+    }
+}
+
+else
+{
+    <p><strong>@Model.Name does not have any favorites yet.</strong></p>
+}

@@ -22,7 +22,6 @@ namespace ResumeRevamp.Models
 
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
-        //[StrongPassword]
         public string Password { get; set; }
 
         public List<Word>? Favorites { get; set; } = new List<Word>();
@@ -32,14 +31,18 @@ namespace ResumeRevamp.Models
 
         }
 
-        public User(string name, string username, string password)
+        public User(string name, string email, string username, string password)
         {
             Name = name;
+            Email = email;
             Username = username;
             Password = password;
         }
 
-
+        public void AddFavorite(Word word)
+        {
+            Favorites.Add(word);
+        }
 
         public string GetDigestedPassword(string password)
         {
