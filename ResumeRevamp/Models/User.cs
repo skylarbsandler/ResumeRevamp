@@ -45,6 +45,11 @@ namespace ResumeRevamp.Models
             Favorites.Add(word);
         }
 
+        public void RemoveFavorite(Word word)
+        {
+            Favorites.Remove(word);
+        }
+
         public string GetDigestedPassword(string password)
         {
             if (string.IsNullOrEmpty(password))

@@ -345,7 +345,7 @@ namespace ResumeRevamp.Controllers
             }
         }
 
-        [Route("/Users/{id:int}/favorites")]
+        [Route("/Users/favorites")]
         public IActionResult Favorites()
         {
             if (!Request.Cookies.ContainsKey("CurrentUser"))
@@ -358,6 +358,7 @@ namespace ResumeRevamp.Controllers
             if (int.TryParse(id, out int parsedId))
             {
                 var user1 = _context.Users
+              .Include(u => u.Favorites)
               .Where(u => u.Id == parsedId)
               .FirstOrDefault();
 

@@ -26,7 +26,13 @@
                     <th style="font-size: 1.5em; font-weight: bold; color: white">Synonyms for <em>@Model.OriginalWord</em>:</th>
                     @if (currentUser is not null)
                     {
-                        <th style="font-size: 1.5em; font-weight: bold; color: white; max-width: 30%">Favorite Word/Synonym Pair</th>
+                        <th style="font-size: 1.5em; font-weight: bold; color: white; max-width: 30%">Favorite <span style="text-transform: capitalize;">@Model.OriginalWord</span>/Synonyms</th>
+                        <td style="color: white">
+                            <form id="addFavorite" action="/Words/AddFavoriteWord" method="post">
+                                <input type="radio" id="OriginalWord" name="OriginalWord" onclick="submitForm()" value="@Model.OriginalWord">
+                                <input type="hidden" id="Synonyms" name="Synonyms" onclick="submitForm()" value="@Model.Synonyms">
+                            </form>
+                        </td>
                     }
                 </tr>
             </thead>
@@ -37,16 +43,6 @@
                             <td style="font-size: 1.2em; color: white">
                                 @Html.DisplayFor(modelItem => synonym)
                             </td>
-                        @if (currentUser is not null)
-                            {
-                            <td style="color: white">
-                                <form id="addFavorite" action="/Words/AddFavoriteWord" method="post">
-                                <input type="radio" name="FavoriteSynonym" onclick="submitForm()" value="@synonym" /> @Model.OriginalWord & @synonym
-                                    <input type="hidden" id="OriginalWord" name="OriginalWord" onclick="submitForm()" value="@Model.OriginalWord">
-                                    <input type="hidden" id="Synonyms" name="Synonyms" onclick="submitForm()" value="@Model.Synonyms">
-                                </form>
-                            </td>
-                        }
                     </tr>
                 }
             </tbody>

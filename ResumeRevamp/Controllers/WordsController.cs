@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using NuGet.Packaging.Signing;
 using ResumeRevamp.DataAccess;
 using ResumeRevamp.Interfaces;
 using ResumeRevamp.Models;
+using Serilog;
 using System.Diagnostics;
 
 namespace ResumeRevamp.Controllers
@@ -32,18 +35,70 @@ namespace ResumeRevamp.Controllers
 
             if (int.TryParse(id, out int parsedId))
             {
-                var user = _context.Users.Where(u => u.Id == parsedId).FirstOrDefault(); ;
-                var word = _context.Words.Where(w => w.OriginalWord == originalWord).FirstOrDefault(); ;
+                var user = _context.Users.Include(u => u.Favorites).FirstOrDefault(u => u.Id == parsedId);
+                var word = _context.Words.FirstOrDefault(w => w.OriginalWord == originalWord);
 
-                user.AddFavorite(word);
-                user.FavoritesCount++;
-                //_context.Users.Update(user);
-                _context.SaveChanges();
+                if (user != null && word != null)
+                {
+                    if (!user.Favorites.Contains(word))
+                    {
+                        user.Favorites.Add(word);
+                        user.FavoritesCount++; 
 
-                return RedirectToAction("Favorites", "Users");
+                        //_context.User.Update(user);
+                        _context.SaveChanges();
+                    }
+
+                    return RedirectToAction("Favorites", "Users");
+                }
+                else
+                {
+                    // Handle the case where the user or word was not found
+                    return NotFound();
+                }
             }
             else
             {
+                // Handle the case where parsing the id fails
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        [Route("/Words/RemoveFavoriteWord")]
+        public IActionResult RemoveFavoriteWord(string originalWord, string synonyms)
+        {
+            string id = Request.Cookies["CurrentUser"].ToString();
+
+            if (int.TryParse(id, out int parsedId))
+            {
+                var user = _context.Users.Include(u => u.Favorites).FirstOrDefault(u => u.Id == parsedId);
+                var word = _context.Words.FirstOrDefault(w => w.OriginalWord == originalWord);
+
+                if (user != null && word != null)
+                {
+                    if (user.Favorites.Contains(word))
+                    {
+                        user.Favorites.Remove(word);
+                        user.FavoritesCount--;
+
+                        //_context.User.Update(user);
+                        _context.SaveChanges();
+
+                        Log.Information($"A word has been removed from Favorites by user: [{user.Id}]{user.Username}");
+                    }
+
+                    return RedirectToAction("Favorites", "Users");
+                }
+                else
+                {
+                    // Handle the case where the user or word was not found
+                    return NotFound();
+                }
+            }
+            else
+            {
+                // Handle the case where parsing the id fails
                 return NotFound();
             }
         }

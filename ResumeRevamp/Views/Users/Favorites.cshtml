@@ -4,15 +4,67 @@
 
 @if (Model.Favorites != null && Model.Favorites.Any())
 {
-    foreach (var word in Model.Favorites)
-    {
-        <div>
-            <h6>@word.OriginalWord</h6>
-            <h6>@string.Join(", ", word.Synonyms)</h6>
-        </div>
-    }
+    <table>
+        <tr>
+            <th>Original Word</th>
+            <th>Synonyms</th>
+            <th>Remove Favorite</th>
+        </tr>
+        @foreach (var word in Model.Favorites)
+        {
+            <tr>
+                <td>@word.OriginalWord</td>
+                <td>@string.Join(", ", word.Synonyms)</td>
+                <td>
+                    <form asp-controller="Words" asp-action="RemoveFavoriteWord" method="post">
+                        <input type="hidden" name="originalWord" value="@word.OriginalWord" />
+                        <input type="hidden" name="synonyms" value="@string.Join(", ", word.Synonyms)" />
+                        <button class="btn btn-primary" type="submit" onclick="return confirm('Are You Sure You Want To Unfavorite this Word?')">Unfavorite</button>
+
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
 }
 else
 {
     <p><strong>@Model.Name does not have any favorites yet.</strong></p>
 }
+
+
+<style>
+    table {
+        width: 80%; 
+        margin: 20px auto; 
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #65B75E;
+        font-size: 1.2em; 
+        font-weight: bold; 
+        color: white;
+    }
+
+    h1 {
+        text-align: center;
+    }
+    
+    td{
+        font-size: 1em;
+    }
+
+    div.word-container {
+        margin-bottom: 20px;
+    }
+</style>
+
+
+
