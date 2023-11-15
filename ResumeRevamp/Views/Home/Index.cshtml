@@ -1,45 +1,67 @@
-﻿@model Word
-@{
+﻿@{
+
     ViewData["Title"] = "Home Page";
+
 }
 
-<div>
-    <h3 class="display-4">Need a New, Impfactful Word for your Resume?</h3>
-    <center>
-        <form asp-controller="Home" asp-action="Index">
-            <table>
-                <tr>
-                    <td>Word: </td>
-                    <td><input type="text" id="OriginalWord" name="OriginalWord" /></td>
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
-        </form>
-    </center>
-    @if (Model != null && Model.Synonyms != null)
-    {
-        <table class="table table-bordered table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>Synonyms:</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var synonym in Model.Synonyms)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => synonym)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No synonyms Found.</p>
-    }
-</div>
+<div class="text-center" ; style="font-family: 'Helvetica', sans-serif;">
 
+    <div>
+
+
+        <h1>Welcome to Resume Revamp</h1>
+
+        <br />
+
+        <h4><a href="https://financesonline.com/resume-statistics/" target="_blank">Studies</a> have shown that how you craft your resume matters:</h4>
+        <ul class="list-unstyled d-inline-block text-left">
+            <li>Action verbs increase the chances of an interview by 140%.</li>
+            <li>Industry buzzwords give a boost of 29%.</li>
+            <li>Leadership-oriented words can enhance a resume by 51%.</li>
+        </ul>
+
+        <br />
+        <br />
+        <h4>
+            <Strong>Resume Revamp</Strong> helps you effortlessly find powerful synonyms and expertly craft your professional documents, making you stand out in the competitive job market.
+        </h4>
+
+        <br />
+        <br />
+
+        <h5>You can use Resume Revamp without an account. However, creating an account allows you to favorite synonyms to refer to later.</h5>
+        <br />
+    </div>
+
+
+
+    <div class="text-center" ; style="font-family: 'Helvetica', sans-serif; display: flex; justify-content: center; align-items: center; flex-direction: row;">
+        <br />
+        <br />
+        <form method="get" action="/home/revampform">
+
+            <button class="btn btn-success" type="submit" style="margin-right: 15px">Revamp My Resume</button>
+
+        </form>
+
+        <br />
+
+        <form method="get" action="/users/login">
+
+            <button class="btn btn-primary" type="submit" style="margin-right: 15px">Log in to an existing account</button>
+
+        </form>
+
+
+        <br />
+
+
+        <form method="get" action="/users/signup">
+
+            <button class="btn btn-primary" type="submit">Create a New Account</button>
+
+        </form>
+    </div>
+
+
+</div>

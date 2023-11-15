@@ -1,0 +1,55 @@
+﻿@model Word
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="font-family: 'Helvetica', sans-serif;">
+    <h3 class="display-4 text-center"><strong>Find New, Impactful Words for Your Resume</strong></h3>
+    <center>
+        <br />
+        <form asp-controller="Home" asp-action="Revamp">
+            <table class="text-center">
+                <tr>
+                    <td style="font-size: 1.5em; font-weight: bold; color: white">Word: </td>
+                    <td><input class="form-control" type="text" id="OriginalWord" name="OriginalWord" placeholder="Ex. Assist, Strong, Use" /></td>
+                    <td><input class="btn btn-success" type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+            <br />
+            <hr />
+        </form>
+        <br />
+    </center>
+    @if (Model != null && Model.Synonyms != null)
+    {
+        <table class="table table-bordered table-striped table-sm mx-auto" style="max-width: 70%;">
+            <thead>
+                <tr>
+                    <th style="font-size: 1.5em; font-weight: bold; color: white">Synonyms for @Model.OriginalWord:</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var synonym in Model.Synonyms)
+                {
+                    <tr>
+                        <td style="font-size: 1.2em; color: white">
+                            @Html.DisplayFor(modelItem => synonym)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <center>
+        <h3>Enter a starting word in the search box to see synonyms for that word.</h3>
+        </center>
+    }
+</div>
+
+<style>
+    .white-text {
+        color: white;
+    }
+</style>

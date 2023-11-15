@@ -13,8 +13,10 @@ namespace ResumeRevamp.Services
 
         static WordsApiService()
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri("https://wordsapiv1.p.rapidapi.com/");
+            client = new HttpClient()
+            {
+                BaseAddress = new Uri("https://wordsapiv1.p.rapidapi.com/")
+            };
             client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "");
             client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
         }
@@ -23,14 +25,34 @@ namespace ResumeRevamp.Services
         {
             try
             {
-                var url = string.Format($"words/{word}/synonyms");
-                var response = await client.GetAsync(url);
-                var stringResponse = await response.Content.ReadAsStringAsync();
-                SynonymsResponse result = JsonSerializer.Deserialize<SynonymsResponse>(stringResponse);
-                return result.Synonyms;
+                if (word.OriginalWord != null)
+                {
+                    string url = $"words/{word.OriginalWord}/synonyms";
+                    var response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var stringResponse = await response.Content.ReadAsStringAsync();
+                        SynonymsResponse result = JsonSerializer.Deserialize<SynonymsResponse>(stringResponse, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+                        return result.Synonyms;
+                    }
+                    else
+                    {
+                        //Add logging
+                        return new List<string>();
+                    }
+                }
+                else
+                {
+                    // Handle the case where OriginalWord is null or empty.
+                    // For now, returning an empty list.
+                    return new List<string>();
+                }
             }
             catch (HttpRequestException ex)
             {
+                // Log or handle the exception appropriately.
                 throw;
             }
         }

@@ -1,0 +1,52 @@
+﻿@model User
+
+
+<div class="col-md-6 offset-lg-3 align-middle" style="margin-top: 25px; font-family: 'Helvetica', sans-serif;">
+
+
+    <h1 class=" justify-content-center">Edit User</h1>
+
+    <form method="post" action="/Users/update/@Model.Id">
+
+
+        <div class="form-group">
+
+            <label class="form-label" for="Name">Name:</label>
+
+            <input class="form-control" type="text" id="Name" name="Name" value="@Model.Name" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label" for="Username">Username:</label>
+
+            <input class="form-control" type="text" id="Username" name="Username" value="@Model.Username" />
+
+            @if (ViewData.ModelState.ContainsKey("Username"))
+            {
+
+                <span class="text-danger">@Html.ValidationMessage("Username")</span>
+
+            }
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="form-label" for="Email">Email:</label>
+
+            <input class="form-control" type="text" id="Email" name="Email" value="@Model.Email" />
+
+        </div>
+
+        <br />
+
+        <div>
+
+            <button class="btn btn-success" type="submit">Update User</button>
+
+        </div>
+    </form>
+
+</div>

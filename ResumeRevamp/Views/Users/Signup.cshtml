@@ -1,0 +1,86 @@
+﻿@model ResumeRevamp.Models.User
+@{
+    string userCreateError = ViewData["UserCreateError"] as string;
+}
+
+
+<div class="col-md-6 offset-lg-3 align-middle" style="margin-top: 25px; font-family: 'Helvetica', sans-serif;">
+
+
+    <h1 class=" justify-content-center">Create ResumeRevamp Account</h1>
+
+    <form method="post" action="/Users/">
+
+
+        <div class="form-group">
+
+
+            <label class="form-label" for="Name" class="form-label mt-2">Name:</label>
+
+            <input class="form-control" type="text" id="Name" placeholder="Enter name" required name="Name">
+
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+
+        </div>
+
+
+        <div class="form-group">
+
+
+            <label class="form-label" for="Username" class="form-label mt-2">Username:</label>
+
+            <input class="form-control" type="text" id="Username" placeholder="Enter username" required name="Username" />
+
+            <span asp-validation-for="Username" class="text-danger"></span>
+
+            @*@if (ViewData.ModelState.ContainsKey("Username"))
+            {
+            <span class="text-danger">@Html.ValidationMessage("Username")</span>
+            }*@
+
+        </div>
+
+        <div class="form-group">
+
+
+            <label class="form-label" for="Email" class="form-label mt-2">Email:</label>
+
+            <input class="form-control" type="text" id="Email" placeholder="Enter email" required name="Email">
+
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+
+        </div>
+
+
+        <div class="form-group">
+
+
+            <label class="form-label" for="Password" class="form-label mt-2">Password:</label>
+
+            <input class="form-control" type="password" id="Password" placeholder="Enter password" required name="Password" />
+
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+
+        </div><br />
+
+        @if (userCreateError is not null)
+        {
+            <p class="text-danger">@userCreateError</p>
+        }
+
+        <div class="d-grid gap-2">
+
+
+            <button class="btn btn-success" type="submit">Create Account</button>
+
+
+        </div>
+
+
+    </form>
+
+
+</div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ResumeRevamp.DataAccess;
 using ResumeRevamp.Interfaces;
 using ResumeRevamp.Models;
 using System.Diagnostics;
@@ -9,14 +10,36 @@ namespace ResumeRevamp.Controllers
     {
         private readonly IWordsApiService _wordsApiService;
         private readonly ILogger<HomeController> _logger;
+        private readonly ResumeRevampContext _context;
 
-        public HomeController(IWordsApiService wordsApiService, ILogger<HomeController> logger)
+        public HomeController(IWordsApiService wordsApiService, ILogger<HomeController> logger, ResumeRevampContext context)
         {
             _logger = logger;
             _wordsApiService = wordsApiService;
+            _context = context;
         }
 
-        public async Task<IActionResult> Index(Word word)
+        public IActionResult Index()
+        {
+
+            if (Request.Cookies.ContainsKey("CurrentUser"))
+            {
+                return Redirect("/users/profile");
+            }
+
+            else
+            {
+                return View();
+            }
+
+        }
+
+        public IActionResult RevampForm()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Revamp(Word word)
         {
             List<string> synonyms = new List<string>();
 
@@ -26,6 +49,10 @@ namespace ResumeRevamp.Controllers
             }
 
             var wordWithSynonyms = new Word { OriginalWord = word.OriginalWord, Synonyms = synonyms };
+
+            _context.Words.Add(wordWithSynonyms);
+            _context.SaveChanges();
+
             return View(wordWithSynonyms);
         }
 
