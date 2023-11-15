@@ -345,7 +345,7 @@ namespace ResumeRevamp.Controllers
             }
         }
 
-        [Route("/Users/favorites")]
+        [Route("/Users/{id:int}/favorites")]
         public IActionResult Favorites()
         {
             if (!Request.Cookies.ContainsKey("CurrentUser"))

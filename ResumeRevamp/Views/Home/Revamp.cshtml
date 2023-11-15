@@ -41,7 +41,9 @@
                             {
                             <td style="color: white">
                                 <form id="addFavorite" action="/Words/AddFavoriteWord" method="post">
-                                <input type="radio" name="FavoriteSynonym" onclick="submitForm()" value="@synonym" /> @Model.OriginalWord & @synonym 
+                                <input type="radio" name="FavoriteSynonym" onclick="submitForm()" value="@synonym" /> @Model.OriginalWord & @synonym
+                                    <input type="hidden" id="OriginalWord" name="OriginalWord" onclick="submitForm()" value="@Model.OriginalWord">
+                                    <input type="hidden" id="Synonyms" name="Synonyms" onclick="submitForm()" value="@Model.Synonyms">
                                 </form>
                             </td>
                         }

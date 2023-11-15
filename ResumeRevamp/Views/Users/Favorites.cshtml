@@ -2,21 +2,16 @@
 
 <h1>@Model.Name's Favorites</h1>
 
-@if (Model.Favorites.Any() != false)
+@if (Model.Favorites != null && Model.Favorites.Any())
 {
-
     foreach (var word in Model.Favorites)
     {
-
         <div>
-
             <h6>@word.OriginalWord</h6>
-            <h6>@word.Synonyms</h6>
-
+            <h6>@string.Join(", ", word.Synonyms)</h6>
         </div>
     }
 }
-
 else
 {
     <p><strong>@Model.Name does not have any favorites yet.</strong></p>

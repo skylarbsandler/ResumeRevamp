@@ -25,6 +25,7 @@ namespace ResumeRevamp.Models
         public string Password { get; set; }
 
         public List<Word>? Favorites { get; set; } = new List<Word>();
+        public int? FavoritesCount { get; set; }
 
         public User()
         {

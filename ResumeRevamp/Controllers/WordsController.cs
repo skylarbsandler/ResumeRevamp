@@ -26,7 +26,7 @@ namespace ResumeRevamp.Controllers
 
         [HttpPost]
         [Route("/Words/AddFavoriteWord")]
-        public IActionResult AddFavoriteWord(string originalWord, string synonym)
+        public IActionResult AddFavoriteWord(string originalWord, string synonyms)
         {
             string id = Request.Cookies["CurrentUser"].ToString();
 
@@ -36,6 +36,8 @@ namespace ResumeRevamp.Controllers
                 var word = _context.Words.Where(w => w.OriginalWord == originalWord).FirstOrDefault(); ;
 
                 user.AddFavorite(word);
+                user.FavoritesCount++;
+                //_context.Users.Update(user);
                 _context.SaveChanges();
 
                 return RedirectToAction("Favorites", "Users");
