@@ -77,9 +77,11 @@ namespace ResumeRevamp.Controllers
 
                 if (user != null && word != null)
                 {
-                    if (user.Favorites.Contains(word))
+                    var savedWord = user.Favorites.FirstOrDefault(w => w.OriginalWord == word.OriginalWord);
+
+                    if (savedWord != null)
                     {
-                        user.Favorites.Remove(word);
+                        user.Favorites.Remove(savedWord);
                         user.FavoritesCount--;
 
                         _context.SaveChanges();

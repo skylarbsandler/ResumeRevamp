@@ -1,1 +1,4 @@
 2023-11-16 08:36:15.103 -07:00 [INF] A word has been removed from Favorites by user: [1]skylar1
+2023-11-16 10:22:27.394 -07:00 [INF] A user has been created
+2023-11-16 10:54:55.293 -07:00 [INF] A word has been removed from Favorites by user: [1]skylar1
+2023-11-16 10:56:05.135 -07:00 [INF] A word has been removed from Favorites by user: [1]skylar1
