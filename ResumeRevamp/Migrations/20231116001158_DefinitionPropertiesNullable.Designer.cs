@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ResumeRevamp.DataAccess;
@@ -12,9 +13,11 @@ using ResumeRevamp.DataAccess;
 namespace ResumeRevamp.Migrations
 {
     [DbContext(typeof(ResumeRevampContext))]
-    partial class ResumeRevampContextModelSnapshot : ModelSnapshot
+    [Migration("20231116001158_DefinitionPropertiesNullable")]
+    partial class DefinitionPropertiesNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

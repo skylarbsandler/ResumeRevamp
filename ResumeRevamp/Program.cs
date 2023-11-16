@@ -2,8 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using ResumeRevamp.Interfaces;
 using ResumeRevamp.DataAccess;
 using ResumeRevamp.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -82,7 +82,6 @@ namespace ResumeRevamp.Controllers
                         user.Favorites.Remove(word);
                         user.FavoritesCount--;
 
-                        //_context.User.Update(user);
                         _context.SaveChanges();
 
                         Log.Information($"A word has been removed from Favorites by user: [{user.Id}]{user.Username}");

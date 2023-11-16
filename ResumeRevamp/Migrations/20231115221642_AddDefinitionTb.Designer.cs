@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ResumeRevamp.DataAccess;
@@ -12,9 +13,11 @@ using ResumeRevamp.DataAccess;
 namespace ResumeRevamp.Migrations
 {
     [DbContext(typeof(ResumeRevampContext))]
-    partial class ResumeRevampContextModelSnapshot : ModelSnapshot
+    [Migration("20231115221642_AddDefinitionTb")]
+    partial class AddDefinitionTb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,15 +35,17 @@ namespace ResumeRevamp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DefinitionText")
-                        .HasColumnType("text")
+                    b.Property<List<string>>("DefinitionText")
+                        .IsRequired()
+                        .HasColumnType("text[]")
                         .HasColumnName("definition_text");
 
-                    b.Property<string>("PartOfSpeech")
-                        .HasColumnType("text")
+                    b.Property<List<string>>("PartOfSpeech")
+                        .IsRequired()
+                        .HasColumnType("text[]")
                         .HasColumnName("part_of_speech");
 
-                    b.Property<int?>("WordId")
+                    b.Property<int>("WordId")
                         .HasColumnType("integer")
                         .HasColumnName("word_id");
 
@@ -128,10 +133,14 @@ namespace ResumeRevamp.Migrations
 
             modelBuilder.Entity("ResumeRevamp.Models.Definition", b =>
                 {
-                    b.HasOne("ResumeRevamp.Models.Word", null)
+                    b.HasOne("ResumeRevamp.Models.Word", "Word")
                         .WithMany("Definitions")
                         .HasForeignKey("WordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("fk_definition_words_word_id");
+
+                    b.Navigation("Word");
                 });
 
             modelBuilder.Entity("ResumeRevamp.Models.Word", b =>
