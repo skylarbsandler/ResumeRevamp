@@ -46,4 +46,6 @@ In `appsettings.json` or User Secrets folder, add: <br>
 
 ## Developer
 **Skylar Sandler** is a student in the Launch program at the Turing School of Software & Design graduating in January 2024. Launch is a 9-month program focused primarily on C#/.NET. Turing School is an accredited, non-profit, fully-remote computer programming school.
-[GitHub Profile](https://github.com/skylarbsandler) - [LinkedIn](https://www.linkedin.com/in/skylarbsandler/)
+<br>
+- [GitHub Profile](https://github.com/skylarbsandler)
+- [LinkedIn](https://www.linkedin.com/in/skylarbsandler/)
