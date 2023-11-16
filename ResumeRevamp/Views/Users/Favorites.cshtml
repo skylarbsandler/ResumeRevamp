@@ -9,14 +9,14 @@
         <tr>
             <th>Original Word</th>
             <th>Synonyms</th>
-            <!--<th>Remove Favorite</th>-->
+            <th>Remove Favorite</th>
         </tr>
         @foreach (var word in Model.Favorites)
         {
             <tr>
                 <td>@word.OriginalWord</td>
                 <td>@string.Join(", ", word.Synonyms)</td>
-                <!--<td>
+                <td>
                     <form asp-controller="Words" asp-action="RemoveFavoriteWord" method="post">
                         <input type="hidden" name="originalWord" value="@word.OriginalWord" />
                         <input type="hidden" name="synonyms" value="@string.Join(", ", word.Synonyms)" />
@@ -24,7 +24,7 @@
 
                     </form>
                 </td>
-                -->
+               
             </tr>
         }
     </table>
