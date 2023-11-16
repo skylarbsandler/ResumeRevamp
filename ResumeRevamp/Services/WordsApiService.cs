@@ -18,7 +18,7 @@ namespace ResumeRevamp.Services
             {
                 BaseAddress = new Uri("https://wordsapiv1.p.rapidapi.com/")
             };
-            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "ad328adaeamshb3df84c5ad57ae1p1e1747jsn38eb81fcd349");
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "");
             client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com");
         }
 
