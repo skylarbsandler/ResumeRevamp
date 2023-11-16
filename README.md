@@ -1,4 +1,4 @@
-# TasteBuddies
+# Resume Revamp
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
@@ -7,12 +7,15 @@
 - [Learning Goals](#learning-goals)
 - [Tech Stack](#tech-stack)
 - [Developer](#developer)
-  
+
 ## About
 Resume Revamp is a ASP.NET web app that aims to solve the problem of helping job seekers create more impactful and compelling resumes.  This app helps you effortlessly find powerful synonyms and expertly craft your professional documents, making you stand out in the competitive job market. 
 With Resume Revamp, you'll leave a lasting impression on potential employers by showcasing your skills and experience with precision and impact.
 
 Resume Revamp was designed and built over the course of five days using agile development including wireframes, user stories, and stand ups. The developer is a former university career advisor and engineering recruiter and therefore the significant influence that the choice of impactful words can have in shaping an effective resume.
+
+<img width="956" alt="image" src="https://github.com/skylarbsandler/ResumeRevamp/assets/95989203/f27dabbf-de29-49b9-a356-36c010d5e366">
+<img width="956" alt="image" src="https://github.com/skylarbsandler/ResumeRevamp/assets/95989203/e0242840-0efc-4e68-bb33-e65eb1883ebe">
 
 ## Getting Started
 Ensure you have the following installed prior to installing the TasteBuddies App:
@@ -42,5 +45,5 @@ In `appsettings.json` or User Secrets folder, add: <br>
 - **Frameworks/Packages:** Microsoft ASP .NET Core, Microsoft Entity Framework Core, PostgreSQL, XUnit Testing, Serilog
 
 ## Developer
-The TasteBuddies Team members are students in the Launch program at the Turing School of Software & Design. Launch is a 9-month program focused primarily on C#/.NET. Turing School is an accredited, non-profit, fully-remote computer programming school.
-- **Skylar Sandler** - [GitHub Profile](https://github.com/skylarbsandler) - [LinkedIn](https://www.linkedin.com/in/skylarbsandler/)
+**Skylar Sandler** is a student in the Launch program at the Turing School of Software & Design graduating in January 2024. Launch is a 9-month program focused primarily on C#/.NET. Turing School is an accredited, non-profit, fully-remote computer programming school.
+[GitHub Profile](https://github.com/skylarbsandler) - [LinkedIn](https://www.linkedin.com/in/skylarbsandler/)
