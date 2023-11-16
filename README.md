@@ -2,13 +2,13 @@
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
-- [About](#about)
+- [About the Project](#about-the-project)
 - [Getting Started](#getting-started)
 - [Learning Goals](#learning-goals)
 - [Tech Stack](#tech-stack)
-- [Developer](#developer)
+- [About the Developer](#about-the-developer)
 
-## About
+## About the Project
 Resume Revamp is a ASP.NET web app that aims to solve the problem of helping job seekers create more impactful and compelling resumes.  This app helps you effortlessly find powerful synonyms and expertly craft your professional documents, making you stand out in the competitive job market. 
 With Resume Revamp, you'll leave a lasting impression on potential employers by showcasing your skills and experience with precision and impact.
 
