@@ -7,6 +7,7 @@ namespace ResumeRevamp.DataAccess
     {
         public DbSet<Word> Words { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Definition> Definition { get; set; }
 
         public ResumeRevampContext(DbContextOptions<ResumeRevampContext> options)
             : base(options) { }

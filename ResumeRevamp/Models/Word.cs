@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string OriginalWord { get; set; }
-        public List<string> Synonyms { get; set; }
+        public List<Definition>? Definitions { get; set; }
+        public List<string>? Synonyms { get; set; }
     }
 }

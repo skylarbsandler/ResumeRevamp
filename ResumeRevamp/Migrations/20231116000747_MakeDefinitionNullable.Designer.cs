@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ResumeRevamp.DataAccess;
@@ -12,9 +13,11 @@ using ResumeRevamp.DataAccess;
 namespace ResumeRevamp.Migrations
 {
     [DbContext(typeof(ResumeRevampContext))]
-    partial class ResumeRevampContextModelSnapshot : ModelSnapshot
+    [Migration("20231116000747_MakeDefinitionNullable")]
+    partial class MakeDefinitionNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,10 +36,12 @@ namespace ResumeRevamp.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DefinitionText")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("definition_text");
 
                     b.Property<string>("PartOfSpeech")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("part_of_speech");
 

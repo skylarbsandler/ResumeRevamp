@@ -18,22 +18,49 @@
             <hr />
         </form>
     </center>
+    <br />
     @if (Model != null && Model.Synonyms != null)
     {
-        <table class="table table-bordered table-striped table-sm mx-auto" style="max-width: 50%;">
+        <table class="table table-bordered table-striped table-sm mx-auto" style="max-width: 48%; margin-right: 10px; border: 1px solid white;">
+
             <thead>
                 <tr>
-                    <th style="font-size: 1.5em; font-weight: bold; color: white">Synonyms for <em>@Model.OriginalWord</em>:</th>
-                    @if (currentUser is not null)
-                    {
-                        <th style="font-size: 1.5em; font-weight: bold; color: white; max-width: 30%">Favorite <span style="text-transform: capitalize;">@Model.OriginalWord</span>/Synonyms</th>
-                        <td style="color: white">
-                            <form id="addFavorite" action="/Words/AddFavoriteWord" method="post">
-                                <input type="radio" id="OriginalWord" name="OriginalWord" onclick="submitForm()" value="@Model.OriginalWord">
-                                <input type="hidden" id="Synonyms" name="Synonyms" onclick="submitForm()" value="@Model.Synonyms">
-                            </form>
+                    <th style="font-size: 1.5em; font-weight: bold; color: white; background-color: #65B75E;">Definitions for <em>@Model.OriginalWord</em>:</th>
+                    <th style="font-size: 1.5em; font-weight: bold; color: white; background-color: #65B75E;">Parts of Speech</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var definition in Model.Definitions)
+                {
+                    <tr>
+                        <td style="font-size: 1.2em; color: white">
+                            @Html.DisplayFor(modelItem => definition.DefinitionText)
                         </td>
+                        <td style="font-size: 1.2em; color: white">
+                            @Html.DisplayFor(modelItem => definition.PartOfSpeech)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <table class="table table-bordered table-striped table-sm mx-auto" style="max-width: 25%; margin-right: 20px; margin-bottom: 150px; border: 1px solid white;">
+            <thead>
+                <tr>
+                    <th style="font-size: 1.5em; font-weight: bold; color: white; background-color: #65B75E;">
+                        Synonyms for <em>@Model.OriginalWord</em>:
+                    @if(currentUser is not null)
+                    {
+                        <br />
+                        <form id="addFavorite" action="/Words/AddFavoriteWord" method="post">
+                            <input type="hidden" id="OriginalWord" name="OriginalWord" onclick="submitForm()" value="@Model.OriginalWord">
+                            <input type="hidden" id="Synonyms" name="Synonyms" onclick="submitForm()" value="@Model.Synonyms">
+                            <button class="btn btn-primary" type="submit"> Favorite <span style="text-transform: capitalize;">@Model.OriginalWord</span>/Synonyms</button>
+                        </form>
                     }
+                    </th>
                 </tr>
             </thead>
             <tbody>
