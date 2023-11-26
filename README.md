@@ -12,7 +12,7 @@
 Resume Revamp is a ASP.NET web app that aims to solve the problem of helping job seekers create more impactful and compelling resumes using 3rd Party API calls to  WordsAPI.  This app helps you effortlessly find powerful synonyms and expertly craft your professional documents, making you stand out in the competitive job market. 
 With Resume Revamp, you'll leave a lasting impression on potential employers by showcasing your skills and experience with precision and impact.
 
-Resume Revamp was designed and built over the course of five days using agile development including wireframes, user stories, and stand ups. The developer is a former university career advisor and engineering recruiter and therefore the significant influence that the choice of impactful words can have in shaping an effective resume.
+Resume Revamp was designed and built over the course of five days using agile development including wireframes, user stories, and stand ups. The developer is a former university career advisor and engineering recruiter and therefore understands the significant influence that the choice of impactful words can have in shaping an effective resume.
 
 <img width="956" alt="image" src="https://github.com/skylarbsandler/ResumeRevamp/assets/95989203/f27dabbf-de29-49b9-a356-36c010d5e366">
 <img width="956" alt="image" src="https://github.com/skylarbsandler/ResumeRevamp/assets/95989203/e0242840-0efc-4e68-bb33-e65eb1883ebe">
